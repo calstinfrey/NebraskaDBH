@@ -22,13 +22,8 @@ knitr::opts_chunk$set(
 ```
 
 
-
 ```{r}
-EBPMatrix <- `1231Activities`
-```
-
-```{r}
-unique(EBPMatrix2$Primary.Problem)
+grepl("Alcohol", FilteredEBP$`Primary Problem`)
 ```
 
 

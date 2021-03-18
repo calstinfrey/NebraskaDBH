@@ -20,26 +20,23 @@ ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       selectInput("strat", label = "Select strategy", choices = 
-                    c("Problem ID/Referral/Education", 
-                      "Education", 
+                    c("Education", 
                       "Environmental", 
                       "Alternative Activity", 
                       "Problem ID/Referral", 
                       "Community-Based Process", 
-                      "Education/Community-Based Process", 
-                      "Information Dissemination", 
-                      "Education/Environmental"), selected = "Education"),
+                      "Information Dissemination"), selected = "Education"),
       
       checkboxGroupInput("issue", label = "Primary Problem(s)", choices = 
                            c("Alcohol", 
-                             "Alcohol, Marijuana", 
-                             "Alcohol, Prescription Drug Abuse", 
-                             "Alcohol, Tobacco", 
-                             "Alcohol, Presciption Drug Abuse, Marijuana, Methamphetamine", "Tobacco",
-                             "Prescription Drug Abuse",                                                         
-                             "Alcohol, Tobacco, Prescription Drug Abuse, Marijuana, Synthetic  Use, Inhalent Use",
-                             "Alcohol, Tobacco, Marijuana",                                                      
-                             "Alcohol, Presciption Drug Abuse, Cocaine , Heroin" ), selected = "Alcohol")
+                             "Marijuana", 
+                             "Prescription Drug Abuse", 
+                             "Tobacco", 
+                             "Methamphetamine",
+                             "Synthetic  Use", 
+                             "Inhalent Use",
+                             "Cocaine" ,
+                             "Heroin"))
       
       
     ),
@@ -57,9 +54,9 @@ ui <- fluidPage(
 server <- function(input, output) {
   
   output$tbl <- renderTable({
-    tbl2<- EBPMatrix2 %>%
+    tbl2<- FilteredEBP %>%
       filter(Strategy == input$strat) %>%
-      select(PFS.EBPPP.Listing, Description , Efficacy, Link) 
+      select(`PFS EBPPP Listing`, `Description (2-3 Sentences)` , Efficacy, Link) 
   })
   
 }
