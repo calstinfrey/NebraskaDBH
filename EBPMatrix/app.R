@@ -36,7 +36,9 @@ ui <- fluidPage(
                              "Synthetic  Use", 
                              "Inhalent Use",
                              "Cocaine" ,
-                             "Heroin"))
+                             "Heroin",
+                             "Suicide Prvention",
+                             "Violence/Bullying"))
       
       
     ),
@@ -52,10 +54,9 @@ ui <- fluidPage(
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
-  
   output$tbl <- renderTable({
-    tbl2<- FilteredEBP %>%
-      filter(Strategy == input$strat) %>%
+    tbl2<- EBPwide2 %>%
+      filter(Strategy1 == input$strat | Strategy2 == input$strat) %>%
       select(`PFS EBPPP Listing`, `Description (2-3 Sentences)` , Efficacy, Link) 
   })
   

@@ -15,7 +15,9 @@ output:
 ---
 
 ```{r, setup, include=FALSE}
-require(mosaic)   # Load additional packages here 
+require(mosaic)
+library(tidyr)
+# Load additional packages here 
 knitr::opts_chunk$set(
   tidy=FALSE,     # display code as typed
   size="small")   # slightly smaller font for code
@@ -23,7 +25,7 @@ knitr::opts_chunk$set(
 
 
 ```{r}
-grepl("Alcohol", FilteredEBP$`Primary Problem`)
+
 ```
 
 
