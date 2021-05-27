@@ -29,18 +29,11 @@ ui <- fluidPage(theme = shinytheme("yeti"),
                       "Community-Based Process", 
                       "Information Dissemination"), selected = "Education"),
       
-      radioButtons("issue", label = "Primary Problem", choices = 
+      radioButtons("issue", label = "Priority Problem", choices = 
                            c("Alcohol", 
-                             "Marijuana", 
-                             "Prescription Drug Abuse", 
-                             "Tobacco", 
-                             "Methamphetamine",
-                             "Synthetic  Use", 
-                             "Inhalent Use",
-                             "Cocaine" ,
-                             "Heroin",
-                             "Suicide Prevention",
-                             "Violence/Bullying"), selected = "Alcohol")
+                             "Tobacco/Vaping", 
+                             "Other Substance Use", 
+                             "Mental Health"), selected = "Alcohol")
       
       
     ),
@@ -56,10 +49,10 @@ ui <- fluidPage(theme = shinytheme("yeti"),
 # Define server logic required to draw a histogram
 server <- function(input, output) {
   output$tbl <- DT::renderDataTable({
-    tbl2<- FilteredEBP3 %>%
+    tbl2<- FilteredEBPMay271 %>%
       filter(Strategy1 == input$strat | Strategy2 == input$strat) %>%
-      filter(grepl(input$issue, `Primary Problem`)) %>%
-      select(`PFS EBPPP Listing`, `Problems Addressed`, Link, `Description (2-3 Sentences)`) 
+      filter(grepl(input$issue, `Problems Addressed`)) %>%
+      select(`PFS EBPPP Listing`, `Problems Addressed`, `Description & Link`) 
   })
 
   

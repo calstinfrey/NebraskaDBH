@@ -25,16 +25,15 @@ knitr::opts_chunk$set(
 
 
 ```{r}
-FilteredEBP3 <- FilteredEBP2 %>%
-  unite("Problems Addressed", c(`Primary Problem`, `Secondary Problem`), sep = ", ", remove = FALSE, na.rm = TRUE)
+FilteredEBPMay27[1, 4] = "Problem ID/Referral, Education"
 ```
 
+```{r}
+FilteredEBPMay27 <-separate(data = FilteredEBPMay27, col = Strategy, into = c("Strategy1", "Strategy2"), sep = "\\,")
+```
 
+```{r}
+FilteredEBPMay271 <- FilteredEBPMay27 %>%
+  unite("Description & Link", c(`Description (2-3 Sentences)`, Link), sep = "\n", remove = FALSE)
 
-
-
-
-
-
-
-
+```
