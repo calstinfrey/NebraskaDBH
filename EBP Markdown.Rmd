@@ -25,7 +25,16 @@ knitr::opts_chunk$set(
 
 
 ```{r}
-
+FilteredEBP3 <- FilteredEBP2 %>%
+  unite("Problems Addressed", c(`Primary Problem`, `Secondary Problem`), sep = ", ", remove = FALSE, na.rm = TRUE)
 ```
+
+
+
+
+
+
+
+
 
 

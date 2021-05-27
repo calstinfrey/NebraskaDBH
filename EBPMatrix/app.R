@@ -9,9 +9,10 @@
 
 library(shiny)
 library(mosaic)
+library(shinythemes)
 
 # Define UI for application that draws a histogram
-ui <- fluidPage(
+ui <- fluidPage(theme = shinytheme("yeti"),
   
   # Application title
   titlePanel("Prevention EBPs"),
@@ -27,7 +28,7 @@ ui <- fluidPage(
                       "Community-Based Process", 
                       "Information Dissemination"), selected = "Education"),
       
-      checkboxGroupInput("issue", label = "Primary Problem(s)", choices = 
+      radioButtons("issue", label = "Primary Problem", choices = 
                            c("Alcohol", 
                              "Marijuana", 
                              "Prescription Drug Abuse", 
@@ -38,7 +39,7 @@ ui <- fluidPage(
                              "Cocaine" ,
                              "Heroin",
                              "Suicide Prvention",
-                             "Violence/Bullying"))
+                             "Violence/Bullying"), selected = "Alcohol")
       
       
     ),
@@ -55,10 +56,12 @@ ui <- fluidPage(
 # Define server logic required to draw a histogram
 server <- function(input, output) {
   output$tbl <- renderTable({
-    tbl2<- EBPwide2 %>%
+    tbl2<- FilteredEBP3 %>%
       filter(Strategy1 == input$strat | Strategy2 == input$strat) %>%
-      select(`PFS EBPPP Listing`, `Description (2-3 Sentences)` , Efficacy, Link) 
+      filter(grepl(input$issue, `Primary Problem`)) %>%
+      select(`PFS EBPPP Listing`, `Problems Addressed`, `Description (2-3 Sentences)`, Link ) 
   })
+
   
 }
 
