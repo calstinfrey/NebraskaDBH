@@ -15,7 +15,7 @@ output:
 ---
 
 ```{r, setup, include=FALSE}
-require(mosaic)
+library(dplyr)
 library(tidyr)
 # Load additional packages here 
 knitr::opts_chunk$set(
@@ -43,6 +43,8 @@ F2$Link <- paste0("<a href='",F2$Link,"'>",F2$Link,"</a>")
 F3 <- F2 %>%
   unite("Description & Link", c(`Description (2-3 Sentences)`, Link), sep = "\n", na.rm = TRUE)
 ```
+
+
 
 
 

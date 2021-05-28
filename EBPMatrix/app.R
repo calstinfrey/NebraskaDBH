@@ -8,9 +8,12 @@
 #
 
 library(shiny)
-library(mosaic)
+library(dplyr)
+library(tidyr)
 library(shinythemes)
 library(DT)
+
+F3 <- readRDS("F3.Rda")
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(theme = shinytheme("yeti"),

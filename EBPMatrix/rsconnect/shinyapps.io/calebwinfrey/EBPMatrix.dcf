@@ -1,0 +1,13 @@
+name: EBPMatrix
+title: EBPMatrix
+username:
+account: calebwinfrey
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4200029
+bundleId: 4651812
+url: https://calebwinfrey.shinyapps.io/EBPMatrix/
+when: 1622220773.11161
+lastSyncTime: 1622220773.11164
+asMultiple: FALSE
+asStatic: FALSE
