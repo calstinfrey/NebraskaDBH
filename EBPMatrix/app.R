@@ -49,11 +49,11 @@ ui <- fluidPage(theme = shinytheme("yeti"),
 # Define server logic required to draw a histogram
 server <- function(input, output) {
   output$tbl <- DT::renderDataTable({
-    tbl2<- FilteredEBPMay271 %>%
+    tbl2<- F3 %>%
       filter(Strategy1 == input$strat | Strategy2 == input$strat) %>%
       filter(grepl(input$issue, `Problems Addressed`)) %>%
       select(`PFS EBPPP Listing`, `Problems Addressed`, `Description & Link`) 
-  })
+  }, escape = FALSE)
 
   
 }

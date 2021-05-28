@@ -24,16 +24,26 @@ knitr::opts_chunk$set(
 ```
 
 
+
 ```{r}
-FilteredEBPMay27[1, 4] = "Problem ID/Referral, Education"
+FilteredEBP52721[1,4] = "Problem ID/Referral, Education"
+```
+
+
+```{r}
+F2 <- FilteredEBP52721 %>%
+  separate(col = Strategy, into = c("Strategy1", "Strategy2"), sep = "\\,")
 ```
 
 ```{r}
-FilteredEBPMay27 <-separate(data = FilteredEBPMay27, col = Strategy, into = c("Strategy1", "Strategy2"), sep = "\\,")
+F2$Link <- paste0("<a href='",F2$Link,"'>",F2$Link,"</a>")
 ```
 
 ```{r}
-FilteredEBPMay271 <- FilteredEBPMay27 %>%
-  unite("Description & Link", c(`Description (2-3 Sentences)`, Link), sep = "\n", remove = FALSE)
-
+F3 <- F2 %>%
+  unite("Description & Link", c(`Description (2-3 Sentences)`, Link), sep = "\n", na.rm = TRUE)
 ```
+
+
+
+
